@@ -1,0 +1,76 @@
+<div class="login-container">
+  <div class="login-left">
+    <h1>Simplify <br> management with <br> our dashboard.</h1>
+    <p>Simplify your e-commerce management with our user-friendly admin dashboard.</p>
+  </div>
+  <div class="login-right">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Welcome Back</mat-card-title>
+        <mat-card-subtitle>Please login to your account</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <mat-form-field appearance="outline">
+            <mat-label>Email address</mat-label>
+            <input matInput type="email" required>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" required>
+            <button mat-icon-button matSuffix>
+              <mat-icon>visibility_off</mat-icon>
+            </button>
+          </mat-form-field>
+          <button mat-button type="button" class="forgot-password">Forgot password?</button>
+          <button mat-raised-button color="primary" type="submit">Login</button>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <p>Or Login with</p>
+        <button mat-stroked-button color="primary">Google</button>
+        <button mat-stroked-button color="primary">Facebook</button>
+      </mat-card-actions>
+      <div class="card-footer">
+        <p>Don't have an account? <a href="#">Signup</a></p>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

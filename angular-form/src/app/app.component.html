@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>Angular Template Form Example</h1>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" ngModel required minlength="3">
+      <div *ngIf="myForm.controls.name?.invalid && myForm.controls.name?.touched">
+        <small *ngIf="myForm.controls.name?.errors?.required">Name is required.</small>
+        <small *ngIf="myForm.controls.name?.errors?.minlength">Name must be at least 3 characters long.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" ngModel required email>
+      <div *ngIf="myForm.controls.email?.invalid && myForm.controls.email?.touched">
+        <small *ngIf="myForm.controls.email?.errors?.required">Email is required.</small>
+        <small *ngIf="myForm.controls.email?.errors?.email">Email is invalid.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" name="password" type="password" ngModel required minlength="6">
+      <div *ngIf="myForm.controls.password?.invalid && myForm.controls.password?.touched">
+        <small *ngIf="myForm.controls.password?.errors?.required">Password is required.</small>
+        <small *ngIf="myForm.controls.password?.errors?.minlength">Password must be at least 6 characters long.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="myForm.invalid">Submit</button>
+  </form>
+</div>
