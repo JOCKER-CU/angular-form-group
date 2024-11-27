@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h2 class="text-center text-success mt-3">Enrollment Form</h2>
+    <form [formGroup]="enrollForm" (ngSubmit)="onSubmit()" class="col-md-6">
+      <div formGroupName="studentInfo">
+        <div class="form-group mt-3">
+          <label for="name">Name:</label>
+          <input type="text" id="name" class="form-control" formControlName="name">
+          <div class="text-danger"
+            *ngIf="!enrollForm.get('studentInfo.name')?.valid && enrollForm.get('studentInfo.name')?.touched">
+            Invalid Name!
+          </div>
+          <div class="text-warning" *ngIf="enrollForm.get('studentInfo.name')?.errors?.['minlength']">
+            Name must be at least 3 characters long.
+          </div>
+          <div class="text-warning" *ngIf="enrollForm.get('studentInfo.name')?.errors?.['maxlength']">
+            Name cannot be more than 20 characters long.
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="email">Email:</label>
+          <input type="email" id="email" class="form-control" formControlName="email">
+          <div class="text-danger"
+            *ngIf="enrollForm.get('studentInfo.email')?.invalid && enrollForm.get('studentInfo.email')?.touched">
+            Valid Email is required!
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" class="form-control" id="phone" formControlName="phone">
+          <div class="text-danger"
+            *ngIf="enrollForm.get('studentInfo.phone')?.invalid && enrollForm.get('studentInfo.phone')?.touched">
+            Valid Phone Number is required!
+          </div>
+        </div>
+
+        <div formGroupName="courseInfo">
+          <div class="form-group mt-3">
+            <label for="courseName">Course:</label>
+            <select class="form-control form-select" id="courseName" formControlName="courseName">
+              <option *ngFor="let course of courseOptions" [value]="course">{{course}}</option>
+            </select>
+            <div class="text-danger"
+              *ngIf="enrollForm.get('studentInfo.courseInfo.courseName')?.invalid && enrollForm.get('studentInfo.courseInfo.courseName')?.touched">
+              Course field is required!
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="duration">Duration:</label>
+            <select class="form-control form-select" id="duration" formControlName="duration">
+              <option *ngFor="let duration of durationOptions" [value]="duration">{{duration}}</option>
+            </select>
+            <div class="text-danger"
+              *ngIf="enrollForm.get('studentInfo.courseInfo.duration')?.invalid && enrollForm.get('studentInfo.courseInfo.duration')?.touched">
+              Duration field is required!
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="paymentInfo">
+          <div class="form-group mt-3">
+            <label for="payment">Payment Type:</label>
+            <select class="form-control form-select" id="payment" formControlName="paymentType">
+              <option *ngFor="let payment of paymentOptions" [value]="payment">{{payment}}</option>
+            </select>
+            <div class="text-danger"
+              *ngIf="enrollForm.get('studentInfo.paymentInfo.paymentType')?.invalid && enrollForm.get('studentInfo.paymentInfo.paymentType')?.touched">
+              Payment field is required!
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="account">Account Number:</label>
+            <input type="number" class="form-control" id="account" formControlName="accountNo">
+            <div class="text-danger"
+              *ngIf="enrollForm.get('studentInfo.paymentInfo.accountNo')?.invalid && enrollForm.get('studentInfo.paymentInfo.accountNo')?.touched">
+              Valid Account Number is required!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary mt-3" type="submit" [disabled]="enrollForm.invalid">Submit</button>
+    </form>
+  </div>
+</div>
